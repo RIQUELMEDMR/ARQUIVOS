@@ -4,46 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Drop and Download</title>
-    <style>
-        /* Estilos opcionais para melhorar a interface */
-        .drop-zone {
-            border: 2px dashed #ccc;
-            padding: 20px;
-            text-align: center;
-            font-size: 1.2em;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="drop-zone" id="drop-zone">
-        Arraste e solte arquivos aqui ou clique para fazer upload.
+    <div class="container">
+        <h1>Drop and Download</h1>
+        <form id="uploadForm" enctype="multipart/form-data">
+            <input type="file" id="fileInput" name="file">
+            <button type="submit">Upload</button>
+        </form>
     </div>
-
-    <!-- Script para lidar com o upload de arquivos -->
-    <script>
-        const dropZone = document.getElementById('drop-zone');
-
-        dropZone.addEventListener('dragover', (event) => {
-            event.preventDefault();
-            dropZone.textContent = 'Solte para fazer upload';
-            dropZone.style.backgroundColor = '#f0f0f0';
-        });
-
-        dropZone.addEventListener('dragleave', (event) => {
-            event.preventDefault();
-            dropZone.textContent = 'Arraste e solte arquivos aqui ou clique para fazer upload.';
-            dropZone.style.backgroundColor = '';
-        });
-
-        dropZone.addEventListener('drop', (event) => {
-            event.preventDefault();
-            dropZone.textContent = 'Arquivos enviados!';
-            dropZone.style.backgroundColor = '';
-
-            const files = event.dataTransfer.files;
-            // Processar os arquivos enviados (salvar no servidor, etc.)
-            console.log(files);
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
