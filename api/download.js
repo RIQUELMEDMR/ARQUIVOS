@@ -2,9 +2,9 @@
 
 export default function handler(req, res) {
     if (req.method === 'GET') {
-        // Lógica para determinar o arquivo a ser baixado
+        // Lógica para buscar o arquivo a ser baixado
         const filePath = '/caminho/para/seu/arquivo.txt'; // Substitua pelo caminho real do arquivo
-
+        
         // Exemplo de envio do arquivo como resposta
         res.status(200).sendFile(filePath);
     } else {
