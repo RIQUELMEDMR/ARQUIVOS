@@ -3,17 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drop and Download</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Upload de Fotos e Vídeos</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Drop and Download</h1>
-        <form id="uploadForm" enctype="multipart/form-data">
-            <input type="file" id="fileInput" name="file">
-            <button type="submit">Upload</button>
-        </form>
-    </div>
-    <script src="script.js"></script>
+    <h1>Upload de Fotos e Vídeos</h1>
+    <form action="upload.php" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" required>
+        <button type="submit">Upload</button>
+    </form>
 </body>
 </html>
