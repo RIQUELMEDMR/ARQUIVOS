@@ -1,9 +1,7 @@
-const dropArea = document.getElementById('drop-area');
-const downloads = document.getElementById('downloads');
+let dropArea = document.getElementById('drop-area');
 
-// Evitar o comportamento padrão de arrastar e soltar
 ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-    dropArea.addEventListener(eventName, preventDefaults, false);
+    dropArea.addEventListener(eventName, preventDefaults, false)
 });
 
 function preventDefaults(e) {
@@ -11,40 +9,53 @@ function preventDefaults(e) {
     e.stopPropagation();
 }
 
-// Adicionar classe quando o arquivo é arrastado para a área
 ['dragenter', 'dragover'].forEach(eventName => {
-    dropArea.addEventListener(eventName, () => {
-        dropArea.classList.add('dragover');
-    }, false);
+    dropArea.addEventListener(eventName, () => dropArea.classList.add('highlight'), false)
 });
 
 ['dragleave', 'drop'].forEach(eventName => {
-    dropArea.addEventListener(eventName, () => {
-        dropArea.classList.remove('dragover');
-    }, false);
+    dropArea.addEventListener(eventName, () => dropArea.classList.remove('highlight'), false)
 });
 
-// Lidar com o evento de soltar o arquivo
 dropArea.addEventListener('drop', handleDrop, false);
 
 function handleDrop(e) {
-    const dt = e.dataTransfer;
-    const files = dt.files;
+    let dt = e.dataTransfer;
+    let files = dt.files;
 
     handleFiles(files);
 }
 
 function handleFiles(files) {
     files = [...files];
-    files.forEach(createDownloadLink);
+    files.forEach(uploadFile);
+    files.forEach(previewFile);
 }
 
-function createDownloadLink(file) {
-    const url = URL.createObjectURL(file);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = file.name;
-    link.textContent = `Download ${file.name}`;
-    link.style.display = 'block';
-    downloads.appendChild(link);
+function uploadFile(file) {
+    let url = 'YOUR_UPLOAD_URL';
+    let formData = new FormData();
+    
+    formData.append('file', file);
+    
+    fetch(url, {
+        method: 'POST',
+        body: formData
+    })
+    .then(() => {
+        document.getElementById('progress-bar').value = 100;
+    })
+    .catch(() => {
+        console.log('Upload failed');
+    });
+}
+
+function previewFile(file) {
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = function() {
+        let img = document.createElement('img');
+        img.src = reader.result;
+        document.getElementById('gallery').appendChild(img);
+    }
 }
