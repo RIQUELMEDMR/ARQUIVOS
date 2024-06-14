@@ -1,0 +1,11 @@
+{
+  "name": "drop-and-download",
+  "version": "1.0.0",
+  "main": "index.html",
+  "license": "MIT",
+  "dependencies": {
+    "multer": "^1.4.5",
+    "fs": "0.0.1-security",
+    "path": "^0.12.7"
+  }
+}
