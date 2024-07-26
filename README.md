@@ -1,6 +1,6 @@
 # Drop And Download
 
-Projeto simples para demonstrar o funcionamento de "Drop and Download".
+Projeto simples para demonstrar o funcionamento de "Drop And Download".
 
 ## Como Usar
 
